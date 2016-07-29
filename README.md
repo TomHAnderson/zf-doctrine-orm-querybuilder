@@ -6,6 +6,8 @@ ZF Campus Doctrine QueryBuilder
 
 This library provides query builder directives from array parameters.  This library was designed to apply filters from an HTTP request to give an API fluent filter and order-by dialects.
 
+# [Video Tutorial](https://apiskeletons.pivotshare.com/media/zf-doctrine-querybuilder/50294)
+
 
 Philosophy
 ----------
