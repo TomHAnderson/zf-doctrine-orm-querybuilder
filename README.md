@@ -9,7 +9,7 @@ This library provides query builder directives from array parameters.  This libr
 
 Tutorial
 --------
-[Watch and learn from the author of this repository](https://apiskeletons.pivotshare.com/media/zf-doctrine-querybuilder/50592)
+[Watch and learn from the maintainer of this repository](https://apiskeletons.pivotshare.com/media/zf-doctrine-querybuilder/50592)
 
 
 Philosophy
