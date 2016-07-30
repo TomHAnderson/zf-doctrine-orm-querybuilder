@@ -1,4 +1,4 @@
-ZF Campus Doctrine QueryBuilder
+ZF Doctrine QueryBuilder
 ===============================
 
 [![Build status](https://api.travis-ci.org/zfcampus/zf-doctrine-querybuilder.svg)](http://travis-ci.org/zfcampus/zf-doctrine-querybuilder)
