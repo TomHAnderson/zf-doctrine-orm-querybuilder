@@ -325,7 +325,7 @@ array(
     'type' => 'andx',
     'conditions' => array(
         array('field' =>'name', 'type'=>'eq', 'value' => 'ArtistOne'),
-        array('field' =>'name', 'type'=>'eq', 'value' => 'ArtistTwo'),
+        array('field' =>'type', 'type'=>'eq', 'value' => 'Band'),
     ),
     'where' => 'and'
 )
