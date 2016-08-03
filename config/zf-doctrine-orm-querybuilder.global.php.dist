@@ -28,10 +28,10 @@ return [
         ],
     ],
 
-    'zf-apigility-doctrine-query-provider' => array(
-        'initializers' => array(
-            'ZF\Doctrine\QueryBuilder\ORM\Filter\Service\FilterManagerInitializer',
-            'ZF\Doctrine\QueryBuilder\ORM\OrderBy\Service\OrderByManagerInitializer',
+    'zf-apigility-doctrine-query-provider' => [
+        'initializers' => [
+            'ZF\Doctrine\ORM\QueryBuilder\Filter\Service\FilterManagerInitializer',
+            'ZF\Doctrine\ORM\QueryBuilder\OrderBy\Service\OrderByManagerInitializer',
         ],
     ],
 ];

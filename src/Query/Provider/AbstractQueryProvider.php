@@ -28,7 +28,7 @@ abstract class AbstractQueryProvider extends ZFAbstractQueryProvider implements
         $metadata = $this->getObjectManager()->getClassMetadata($entityClass);
         $query = $event->getRequest()->getQuery();
 
-        $this->getOrmFilterManager()->filter($queryBuilder, $metadata, $query['filter']);
-        $this->getOrmOrderByManager()->orderBy($queryBuilder, $metadata, $query['order-by']);
+        $this->getFilterManager()->filter($queryBuilder, $metadata, $query['filter']);
+        $this->getOrderByManager()->orderBy($queryBuilder, $metadata, $query['order-by']);
     }
 }
