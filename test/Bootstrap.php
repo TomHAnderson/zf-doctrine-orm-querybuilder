@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 2014 Zend Technologies USA Inc. (http://www.zend.com)
  */
 
-namespace ZFTest\Doctrine\QueryBuilder\Filter;
+namespace ZFTest\Doctrine\ORM\QueryBuilder\Filter;
 
 use Zend\Loader\AutoloaderFactory;
 use RuntimeException;
@@ -51,7 +51,7 @@ class Bootstrap
                 'Zend\Loader\StandardAutoloader' => array(
                     'autoregister_zf' => true,
                     'namespaces' => array(
-                        'ZFTest\Doctrine\QueryBuilder\Filter' => __DIR__ . '/../src',
+                        'ZFTest\Doctrine\ORM\QueryBuilder\Filter' => __DIR__ . '/../src',
                         __NAMESPACE__ => __DIR__,
                         'Test' => __DIR__ . '/../vendor/Test/',
                     ),

@@ -1,17 +1,12 @@
-ZF Doctrine QueryBuilder
+ZF Doctrine ORM QueryBuilder
 ===============================
 
-[![Build status](https://api.travis-ci.org/zfcampus/zf-doctrine-querybuilder.svg)](http://travis-ci.org/zfcampus/zf-doctrine-querybuilder)
-[![Total Downloads](https://poser.pugx.org/zfcampus/zf-doctrine-querybuilder/downloads)](https://packagist.org/packages/zfcampus/zf-doctrine-querybuilder)
+[![Build status](https://api.travis-ci.org/api-skeletons/zf-doctrine-orm-querybuilder.svg)](http://travis-ci.org/zfcampus/zf-doctrine-orm-querybuilder)
+[![Total Downloads](https://poser.pugx.org/zfcampus/zf-doctrine-orm-querybuilder/downloads)](https://packagist.org/packages/zfcampus/zf-doctrine-orm-querybuilder)
 
 This library provides query builder directives from array parameters.  This library was designed to apply filters from an HTTP request to give an API fluent filter and order-by dialects.
 
-[![Watch and learn from the maintainer of this repository](https://raw.githubusercontent.com/API-Skeletons/zf-doctrine-querybuilder/master/media/api-skeletons-play.png)](https://apiskeletons.pivotshare.com/media/zf-doctrine-querybuilder/50592)
-
-
-Tutorial
---------
-[Watch and learn from the maintainer of this repository](https://apiskeletons.pivotshare.com/media/zf-doctrine-querybuilder/50592)
+[![Watch and learn from the maintainer of this repository](https://raw.githubusercontent.com/API-Skeletons/zf-doctrine-orm-querybuilder/master/media/api-skeletons-play.png)](https://apiskeletons.pivotshare.com/media/zf-doctrine-querybuilder)
 
 
 Philosophy
@@ -36,34 +31,22 @@ Installation
 Installation of this module uses composer. For composer documentation, please refer to [getcomposer.org](http://getcomposer.org/).
 
 ``` console
-$ php composer.phar require zfcampus/zf-doctrine-querybuilder ^1.3
+$ php composer.phar require zfcampus/zf-doctrine-orm-querybuilder ^1.0
 ```
 
-Once installed, add `ZF\Doctrine\QueryBuilder` to your list of modules inside
-`config/application.config.php`.
+Once installed, add `ZF\Doctrine\ORM\QueryBuilder` to your list of modules in `config/application.config.php`.
 
 
 Configuring the Module
 ----------------------
 
-Copy `config/zf-doctrine-querybuilder.global.php.dist` to `config/autoload/zf-doctrine-querybuilder.global.php` and edit the list of invokables for orm and odm to those you want enabled by default.
+Copy `config/zf-doctrine-orm-querybuilder.global.php.dist` to `config/autoload/zf-doctrine-orm-querybuilder.global.php` and edit the list of invokables to those you want enabled.
 
 
 Use With Apigility Doctrine
 ---------------------------
 
-To enable all filters you may override the default query providers in zf-apigility-doctrine.  Add this to your `zf-doctrine-querybuilder.global.php` config file and filters and order-by will be applied if they are in `$_GET['filter']` or `$_GET['order-by']` request.  These $_GET keys are customizable through `zf-doctrine-querybuilder-options`
-
-```php
-'zf-apigility-doctrine-query-provider' => array(
-    'invokables' => array(
-        'default_orm' => 'ZF\Doctrine\QueryBuilder\Query\Provider\DefaultOrm',
-        'default_odm' => 'ZF\Doctrine\QueryBuilder\Query\Provider\DefaultOdm',
-    )
-),
-```
-
-Or: to use with apigility doctrine events see [docs/apigility.example.php](https://github.com/zfcampus/zf-doctrine-querybuilder/blob/master/docs/apigility.example.php)
+The abstract query provider `ZF\Doctrine\ORM\QueryBuilder\Query\Provider\AbstractQueryProvider` has the function `applyFiltersAndOrderBy` which will add request filters and order by directives to the QueryBuilder you pass it.
 
 
 Use
@@ -71,19 +54,19 @@ Use
 
 Configuration example
 ```php
-    'zf-doctrine-querybuilder-orderby-orm' => array(
+    'zf-doctrine-orm-querybuilder-orderby' => array(
         'invokables' => array(
-            'field' => 'ZF\Doctrine\QueryBuilder\OrderBy\ORM\Field',
+            'field' => 'ZF\Doctrine\ORM\QueryBuilder\OrderBy\Field',
         ),
     ),
-    'zf-doctrine-querybuilder-filter-orm' => array(
+    'zf-doctrine-orm-querybuilder-filter' => array(
         'invokables' => array(
-            'eq' => 'ZF\Doctrine\QueryBuilder\Filter\ORM\Equals',
+            'eq' => 'ZF\Doctrine\ORM\QueryBuilder\Filter\Equals',
         ),
     ),
 ```
 
-Request example
+A sample Request in PHP syntax.
 ```php
 $_GET = array(
     'filter' => array(
@@ -103,26 +86,6 @@ $_GET = array(
 );
 ```
 
-Resource example
-```php
-$serviceLocator = $this->getApplication()->getServiceLocator();
-$objectManager = $serviceLocator->get('doctrine.entitymanager.orm_default');
-
-$filterManager = $serviceLocator->get('ZfDoctrineQueryBuilderFilterManagerOrm');
-$orderByManager = $serviceLocator->get('ZfDoctrineQueryBuilderOrderByManagerOrm');
-
-$queryBuilder = $objectManager->createQueryBuilder();
-$queryBuilder->select('row')
-    ->from($entity, 'row')
-;
-
-$metadata = $objectManager->getMetadataFactory()->getMetadataFor(ENTITY_NAME); // $e->getEntity() using doctrine resource event
-$filterManager->filter($queryBuilder, $metadata, $_GET['filter']);
-$orderByManager->orderBy($queryBuilder, $metadata, $_GET['order-by']);
-
-$result = $queryBuilder->getQuery()->getResult();
-```
-
 
 Filters
 -------
@@ -137,14 +100,14 @@ Each filter definition may specify 'where' with values of either 'and', 'or'.
 
 Embedded logic such as and(x or y) is supported through AndX and OrX filter types.
 
-### Building HTTP GET query:
 
-Javascript Example:
+An example GET query with jQuery
+--------------------------------
 
 ```js
 $(function() {
     $.ajax({
-        url: "http://localhost:8081/api/db/entity/user_data",
+        url: "http://localhost:8081/api/resource-name",
         type: "GET",
         data: {
             'filter': [
@@ -242,10 +205,10 @@ just `Y-m-d`, then add the format to the filter.  For complete date format optio
 Joining Entities and Aliasing Queries
 -------------------------------------
 
-There is an included ORM Query Type for Inner Join so for every filter type there is an optional `alias`.
+There is an included Filter for Inner Join so for every filter type there is an optional `alias`.
 The default alias is 'row' and refers to the entity at the heart of the REST resource.  There is not a filter to add other entities to the return data.  That is, only the original target resource, by default 'row', will be returned regardless of what filters or order by are applied through this module.
 
-Inner Join is not included by default in the ```zf-doctrine-querybuilder.global.php.dist```
+Inner Join is not included by default in the ```zf-doctrine-orm-querybuilder.global.php.dist```
 
 This example joins the report field through the inner join already defined on the row entity then filters
 for `r.id = 2`:
@@ -274,8 +237,6 @@ To enable inner join add this to your configuration.
 
 Included Filter Types
 ---------------------
-
-### ORM and ODM
 
 Equals:
 
@@ -351,8 +312,6 @@ Like (`%` is used as a wildcard):
 array('type' => 'like', 'field' => 'fieldName', 'value' => 'like%search')
 ```
 
-### ORM Only
-
 Is Member Of:
 
 ```php
@@ -361,9 +320,7 @@ array('type' => 'ismemberof', 'field' => 'fieldName', 'value' => 1)
 
 AndX:
 
-In AndX queries, the `conditions` is an array of filter types for any of those described
-here.  The join will always be `and` so the `where` parameter inside of conditions is
-ignored.  The `where` parameter on the AndX filter type is not ignored.
+In AndX queries, the `conditions` is an array of filter types for any of those described here.  The join will always be `and` so the `where` parameter inside of conditions is ignored.  The `where` parameter on the AndX filter type is not ignored.
 
 ```php
 array(
@@ -391,14 +348,6 @@ array(
     ),
     'where' => 'and'
 )
-```
-
-### ODM Only
-
-Regex:
-
-```php
-array('type' => 'regex', 'field' => 'fieldName', 'value' => '/.*search.*/i')
 ```
 
 

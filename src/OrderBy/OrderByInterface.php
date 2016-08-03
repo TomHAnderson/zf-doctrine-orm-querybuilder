@@ -4,9 +4,11 @@
  * @copyright Copyright (c) 2014 Zend Technologies USA Inc. (http://www.zend.com)
  */
 
-namespace ZF\Doctrine\QueryBuilder\OrderBy;
+namespace ZF\Doctrine\ORM\QueryBuilder\OrderBy;
+
+use Doctrine\ORM\QueryBuilder;
 
 interface OrderByInterface
 {
-    public function orderBy($queryBuilder, $metadata, $option);
+    public function orderBy(QueryBuilder $queryBuilder, $metadata, $option);
 }

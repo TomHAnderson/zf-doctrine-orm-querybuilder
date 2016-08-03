@@ -1,29 +1,19 @@
 <?php
 
-date_default_timezone_set('UTC');
+return [
+    'zf-doctrine-orm-querybuilder' => [
+        'filter_key' => 'filter',
+        'order_by_key' => 'order-by',
+    ],
 
-return array(
-    'doctrine' => array(
-        'connection' => array(
-            'orm_default' => array(
-                'configuration' => 'orm_default',
-                'eventmanager'  => 'orm_default',
-                'driverClass'   => 'Doctrine\DBAL\Driver\PDOSqlite\Driver',
-                'params' => array(
-                    'memory' => true,
-                ),
-            ),
-            'odm_default' => array(
-                'server' => 'localhost',
-                'port' => '27017',
-                'user' => '',
-                'password' => '',
-                'dbname' => 'zf_doctrine_querybuilder_filter_test',
-            ),
-        ),
-    ),
-    'zf-doctrine-orm-querybuilder-filter' => array(
-        'invokables' => array(
+    'zf-doctrine-orm-querybuilder-orderby' => [
+        'invokables' => [
+            'field' => 'ZF\Doctrine\ORM\QueryBuilder\OrderBy\Field',
+        ],
+    ],
+
+    'zf-doctrine-orm-querybuilder-filter' => [
+        'invokables' => [
             'eq' => 'ZF\Doctrine\ORM\QueryBuilder\Filter\EqualsFilter',
             'neq' => 'ZF\Doctrine\ORM\QueryBuilder\Filter\NotEqualsFilter',
             'lt' => 'ZF\Doctrine\ORM\QueryBuilder\Filter\LessThanFilter',
@@ -40,7 +30,13 @@ return array(
             'ismemberof' => 'ZF\Doctrine\ORM\QueryBuilder\Filter\IsMemberOfFilter',
             'orx' => 'ZF\Doctrine\ORM\QueryBuilder\Filter\OrXFilter',
             'andx' => 'ZF\Doctrine\ORM\QueryBuilder\Filter\AndXFilter',
-            'innerjoin' => 'ZF\Doctrine\ORM\QueryBuilder\Filter\InnerJoinFilter',
-        ),
-    ),
-);
+        ],
+    ],
+
+    'zf-apigility-doctrine-query-provider' => array(
+        'initializers' => array(
+            'ZF\Doctrine\QueryBuilder\ORM\Filter\Service\FilterManagerInitializer',
+            'ZF\Doctrine\QueryBuilder\ORM\OrderBy\Service\OrderByManagerInitializer',
+        ],
+    ],
+];

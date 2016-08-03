@@ -1,10 +1,6 @@
 <?php
-/**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2014 Zend Technologies USA Inc. (http://www.zend.com)
- */
 
-namespace ZF\Doctrine\QueryBuilder;
+namespace ZF\Doctrine\ORM\QueryBuilder;
 
 use Zend\ModuleManager\Feature\DependencyIndicatorInterface;
 use Zend\ModuleManager\ModuleManager;
@@ -33,30 +29,17 @@ class Module implements DependencyIndicatorInterface
         $serviceListener = $serviceManager->get('ServiceListener');
 
         $serviceListener->addServiceManager(
-            'ZfDoctrineQueryBuilderFilterManagerOrm',
-            'zf-doctrine-querybuilder-filter-orm',
+            'ZF\Doctrine\ORM\QueryBuilder\Filter\Service\FilterManager',
+            'zf-doctrine-orm-querybuilder-filter',
             'ZF\Doctrine\QueryBuilder\Filter\FilterInterface',
-            'getDoctrineQueryBuilderFilterOrmConfig'
+            'getDoctrineORMQueryBuilderFilterConfig'
         );
 
         $serviceListener->addServiceManager(
-            'ZfDoctrineQueryBuilderFilterManagerOdm',
-            'zf-doctrine-querybuilder-filter-odm',
-            'ZF\Doctrine\QueryBuilder\Filter\FilterInterface',
-            'getDoctrineQueryBuilderFilterOdmConfig'
-        );
-
-        $serviceListener->addServiceManager(
-            'ZfDoctrineQueryBuilderOrderByManagerOrm',
-            'zf-doctrine-querybuilder-orderby-orm',
+            'ZF\Doctrine\ORM\QueryBuilder\OrderBy\Service\OrderByManager',
+            'zf-doctrine-orm-querybuilder-orderby',
             'ZF\Doctrine\QueryBuilder\OrderBy\OrderByInterface',
-            'getDoctrineQueryBuilderOrderByOrmConfig'
-        );
-        $serviceListener->addServiceManager(
-            'ZfDoctrineQueryBuilderOrderByManagerOdm',
-            'zf-doctrine-querybuilder-orderby-odm',
-            'ZF\Doctrine\QueryBuilder\OrderBy\OrderByInterface',
-            'getDoctrineQueryBuilderOrderByOdmConfig'
+            'getDoctrineORMQueryBuilderOrderByConfig'
         );
     }
 
@@ -67,6 +50,6 @@ class Module implements DependencyIndicatorInterface
      */
     public function getModuleDependencies()
     {
-        return array('DoctrineModule');
+        return array('DoctrineModule', 'DoctrineORMModule');
     }
 }

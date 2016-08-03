@@ -18,17 +18,9 @@ matrix:
         INSTALL_PECL_MONGO=true
     - php: 7
     - php: hhvm
-  allow_failures:
-    - php: 7
-    - php: hhvm
-
-notifications:
-  irc: "irc.freenode.org#apigility-dev"
-  email: false
 
 before_install:
   - if [[ $EXECUTE_COVERAGE != 'true' ]]; then phpenv config-rm xdebug.ini || return 0 ; fi
-  - if [[ $INSTALL_PECL_MONGO == 'true' ]]; then pecl install -f mongo-1.4.1 || return 0 ; fi
   - composer self-update
 
 install:

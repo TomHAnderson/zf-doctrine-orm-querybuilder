@@ -4,10 +4,8 @@ return array(
     'modules' => array(
         'DoctrineModule',
         'DoctrineORMModule',
-        'DoctrineMongoODMModule',
         'Db',
-        'DbMongo',
-        'ZF\Doctrine\QueryBuilder',
+        'ZF\Doctrine\ORM\QueryBuilder',
     ),
     'module_listener_options' => array(
         'config_glob_paths' => array(
@@ -15,9 +13,8 @@ return array(
         ),
         'module_paths' => array(
             __DIR__ . '/../vendor',
-            'DbMongo' => __DIR__ . '/module/DbMongo',
             'Db' => __DIR__ . '/module/Db',
-            'ZF\Doctrine\QueryBuilder' => __DIR__ . '/../../',
+            'ZF\Doctrine\ORM\QueryBuilder' => __DIR__ . '/../../',
         ),
     ),
 );
