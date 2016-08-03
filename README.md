@@ -1,7 +1,7 @@
 ZF Doctrine ORM QueryBuilder
 ===============================
 
-[![Build status](https://api.travis-ci.org/api-skeletons/zf-doctrine-orm-querybuilder.svg)](http://travis-ci.org/api-skeletons/zf-doctrine-orm-querybuilder)
+[![Build status](https://travis-ci.org/API-Skeletons/zf-doctrine-orm-querybuilder.svg)](http://travis-ci.org/api-skeletons/zf-doctrine-orm-querybuilder)
 [![Total Downloads](https://poser.pugx.org/api-skeletons/zf-doctrine-orm-querybuilder/downloads)](https://packagist.org/packages/api-skeletons/zf-doctrine-orm-querybuilder)
 
 This library provides query builder directives from array parameters.  This library was designed to apply filters from an HTTP request to give an API fluent filter and order-by dialects.
