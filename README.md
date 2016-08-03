@@ -1,8 +1,8 @@
 ZF Doctrine ORM QueryBuilder
 ===============================
 
-[![Build status](https://api.travis-ci.org/api-skeletons/zf-doctrine-orm-querybuilder.svg)](http://travis-ci.org/zfcampus/zf-doctrine-orm-querybuilder)
-[![Total Downloads](https://poser.pugx.org/zfcampus/zf-doctrine-orm-querybuilder/downloads)](https://packagist.org/packages/zfcampus/zf-doctrine-orm-querybuilder)
+[![Build status](https://api.travis-ci.org/api-skeletons/zf-doctrine-orm-querybuilder.svg)](http://travis-ci.org/api-skeletons/zf-doctrine-orm-querybuilder)
+[![Total Downloads](https://poser.pugx.org/api-skeletons/zf-doctrine-orm-querybuilder/downloads)](https://packagist.org/packages/api-skeletons/zf-doctrine-orm-querybuilder)
 
 This library provides query builder directives from array parameters.  This library was designed to apply filters from an HTTP request to give an API fluent filter and order-by dialects.
 
@@ -31,7 +31,7 @@ Installation
 Installation of this module uses composer. For composer documentation, please refer to [getcomposer.org](http://getcomposer.org/).
 
 ``` console
-$ php composer.phar require zfcampus/zf-doctrine-orm-querybuilder ^1.0
+$ php composer.phar require api-skeletons/zf-doctrine-orm-querybuilder ^1.0
 ```
 
 Once installed, add `ZF\Doctrine\ORM\QueryBuilder` to your list of modules in `config/application.config.php`.
