@@ -16,7 +16,7 @@ use ZF\Doctrine\ORM\QueryBuilder\OrderBy\Service\OrderByManagerAwareTrait;
 use Doctrine\ORM\QueryBuilder;
 use ZF\Rest\ResourceEvent;
 
-abstract class ORMAbstractQueryProvider extends ZFAbstractQueryProvider implements
+abstract class AbstractQueryProvider extends ZFAbstractQueryProvider implements
     FilterManagerAwareInterface,
     OrderByManagerAwareInterface
 {
