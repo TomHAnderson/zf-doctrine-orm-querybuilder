@@ -1,11 +1,6 @@
 <?php
 
 return [
-    'zf-doctrine-orm-querybuilder' => [
-        'filter_key' => 'filter',
-        'order_by_key' => 'order-by',
-    ],
-
     'zf-doctrine-orm-querybuilder-orderby' => [
         'invokables' => [
             'field' => 'ZF\Doctrine\ORM\QueryBuilder\OrderBy\Field',
