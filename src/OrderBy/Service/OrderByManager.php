@@ -25,7 +25,7 @@ class OrderByManager extends AbstractPluginManager
             // @codeCoverageIgnoreEnd
 
             $instance = $this->get(strtolower($option['type']), array($this));
-            $instance->setOrmOrderByManager($this);
+            $instance->setOrderByManager($this);
 
             $instance->orderBy($queryBuilder, $metadata, $option);
         }
