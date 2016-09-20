@@ -222,12 +222,12 @@ You can inner join tables from an inner join using `parentAlias`:
     array('type' => 'innerjoin', 'parentAlias' => 'r', 'field' => 'owner', 'alias' => 'o'),
 ```
 
-To enable inner join add this to your configuration.
+To enable inner join add this to your configuration:
 
 ```php
-    'zf-doctrine-querybuilder-filter-orm' => array(
+    'zf-doctrine-orm-querybuilder-filter' => array(
         'invokables' => array(
-            'innerjoin' => 'ZF\Doctrine\QueryBuilder\Filter\ORM\InnerJoin',
+            'innerjoin' => 'ZF\Doctrine\ORM\QueryBuilder\Filter\InnerJoinFilter',
         ),
     ),
 ```
